@@ -54,13 +54,28 @@ def reverse_list(list)
   stack.data
 end
 
+def recursive_reverse_list(list, previous=nil)
+  print_values(list)
+  print_values(previous)
+  #puts previous.inspect
+
+  if list.next_node.nil?
+    previous.next_node = nil unless previous.nil?
+    list.next_node = previous
+    return list
+  else
+    new = LinkedListNode.new(list.value)
+    recursive_reverse_list(list.next_node, new).next_node = previous
+  end
+end
+
 node1 = LinkedListNode.new(37)
 node2 = LinkedListNode.new(99, node1)
 node3 = LinkedListNode.new(12, node2)
 
-print_values(node3)
+#print_values(node3)
 
-puts "-------"
+#puts "-------"
 
-revlist = reverse_list(node3)
-print_values(revlist)
+revlist = recursive_reverse_list(node3)
+#print_values(revlist)
