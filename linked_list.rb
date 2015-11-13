@@ -1,3 +1,5 @@
+require "yaml"
+
 class LinkedListNode
   attr_accessor :value, :next_node
 
@@ -8,7 +10,7 @@ class LinkedListNode
 end
 
 def print_values(list_node)
-list_node.inspect
+list_node.inspect.to_yaml
   print "#{list_node.value} --> "
   if list_node.next_node.nil?
     print "nil\n"
@@ -27,18 +29,22 @@ class Stack
 
   # Push an item onto the stack
   def push(element)
+    puts "Pushing #{element}\n"
     # IMPLEMENT ME!
-    updated_stack = LinkedListNode.new(element.value, @data)
+    updated_stack = LinkedListNode.new(element, @data)
     @data = updated_stack
+    puts "After pushing #{element}:\n #{self.inspect.to_yaml}\n"
   end
 
   # Pop an item off the stack.
   # Remove the last item that was pushed onto the
   # stack and return it to the user
   def pop
+    puts "Popping:\n #{self.inspect.to_yaml}\n"
     item_to_pop = @data.nil? ? nil : @data.value
     @data = @data.nil? ? LinkedListNode.new(nil) : @data.next_node
-    item_to_pop
+    puts "Here is your element: #{item_to_pop}"
+    puts "After popping:\n #{self.inspect.to_yaml}\n"
   end
 end
 
@@ -56,7 +62,6 @@ def reverse_list(list)
     end
 
     revlist
-    # ADD CODE HERE
 end
 
 
@@ -69,6 +74,5 @@ print_values(node3)
 puts "-------"
 
 revlist = reverse_list(node3)
-puts revlist.inspect
-print_values(revlist)
-
+#puts revlist.inspect
+#print_values(revlist)
