@@ -29,39 +29,29 @@ class Stack
 
   # Push an item onto the stack
   def push(element)
-    puts "Pushing #{element}\n"
-    # IMPLEMENT ME!
     updated_stack = LinkedListNode.new(element, @data)
     @data = updated_stack
-    puts "After pushing #{element}:\n #{self.inspect.to_yaml}\n"
   end
 
   # Pop an item off the stack.
   # Remove the last item that was pushed onto the
   # stack and return it to the user
   def pop
-    puts "Popping:\n #{self.inspect.to_yaml}\n"
-    item_to_pop = @data.nil? ? nil : @data.value
-    @data = @data.nil? ? LinkedListNode.new(nil) : @data.next_node
-    puts "Here is your element: #{item_to_pop}"
-    puts "After popping:\n #{self.inspect.to_yaml}\n"
+    top_item = @data.value
+    @data =@data.next_node
+    top_item
   end
 end
 
 def reverse_list(list)
-    stack = Stack.new
-    revlist = nil
+  stack = Stack.new
 
-    while list
-      puts stack.pop
-      list = list.next_node
-    end
+  while list
+    stack.push(list.value)
+    list = list.next_node
+  end
 
-    while stack.data
-      revlist = LinkedListNode.new(stack.pop, revlist)
-    end
-
-    revlist
+  stack.data
 end
 
 
@@ -74,5 +64,4 @@ print_values(node3)
 puts "-------"
 
 revlist = reverse_list(node3)
-#puts revlist.inspect
-#print_values(revlist)
+print_values(revlist)
