@@ -62,21 +62,18 @@ def recursive_reverse_list(list, previous=nil)
   end
 end
 
-# Initialize test data
-node1 = LinkedListNode.new(37)
-node2 = LinkedListNode.new(99, node1)
-node3 = LinkedListNode.new(12, node2)
+def infinite_linked_list?(list)
+  tortoise = list.next_node
+  hare = list.next_node.next_node
 
-# Print results
-puts "Original list:"
-print_values(node3)
-puts "-------"
-
-revlist = reverse_list(node3)
-puts "Reverse list with stack:"
-print_values(revlist)
-puts "-------"
-
-recursive_revlist = recursive_reverse_list(node3)
-puts "Recursie revlist without stack:"
-print_values(recursive_revlist)
+  while tortoise && hare && tortoise.next_node
+    if tortoise == hare
+      puts "A loop has been detected :( " # Change to 'return true' to fit initial requirement
+      return
+    else
+      tortoise = tortoise.next_node.next_node
+      hare = hare.next_node
+    end
+  end
+  puts "Your list looks fine :) no loops" # Change to 'return false' to fit initial requirement
+end
