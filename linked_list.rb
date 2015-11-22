@@ -66,15 +66,17 @@ end
 node1 = LinkedListNode.new(37)
 node2 = LinkedListNode.new(99, node1)
 node3 = LinkedListNode.new(12, node2)
-revlist = reverse_list(node3)
-recursive_revlist = recursive_reverse_list(node3)
 
 # Print results
 puts "Original list:"
 print_values(node3)
 puts "-------"
+
+revlist = reverse_list(node3)
 puts "Reverse list with stack:"
 print_values(revlist)
 puts "-------"
+
+recursive_revlist = recursive_reverse_list(node3)
 puts "Recursie revlist without stack:"
 print_values(recursive_revlist)
