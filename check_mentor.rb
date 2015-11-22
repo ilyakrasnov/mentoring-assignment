@@ -19,7 +19,7 @@ puts "-------"
 
 # Reverse list recursively
 recursive_revlist = recursive_reverse_list(node3)
-puts "Recursie revlist without stack:"
+puts "Recursive revlist without stack:"
 print_values(recursive_revlist)
 puts "-------"
 
