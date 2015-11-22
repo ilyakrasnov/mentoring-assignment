@@ -1,5 +1,3 @@
-require "yaml"
-
 class LinkedListNode
   attr_accessor :value, :next_node
 
@@ -55,27 +53,29 @@ def reverse_list(list)
 end
 
 def recursive_reverse_list(list, previous=nil)
-  print_values(list)
-  print_values(previous)
-  #puts previous.inspect
-
   if list.next_node.nil?
-    previous.next_node = nil unless previous.nil?
     list.next_node = previous
     return list
   else
-    new = LinkedListNode.new(list.value)
-    recursive_reverse_list(list.next_node, new).next_node = previous
+    next_node = list.next_node
+    list.next_node = previous
+    recursive_reverse_list(next_node, list)
   end
 end
 
+# Initialize test data
 node1 = LinkedListNode.new(37)
 node2 = LinkedListNode.new(99, node1)
 node3 = LinkedListNode.new(12, node2)
+revlist = reverse_list(node3)
+recursive_revlist = recursive_reverse_list(node3)
 
-#print_values(node3)
-
-#puts "-------"
-
-revlist = recursive_reverse_list(node3)
-#print_values(revlist)
+# Print results
+puts "Original list:"
+print_values(node3)
+puts "-------"
+puts "Reverse list with stack:"
+print_values(revlist)
+puts "-------"
+puts "Recursie revlist without stack:"
+print_values(recursive_revlist)
