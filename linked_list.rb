@@ -8,7 +8,6 @@ class LinkedListNode
 end
 
 def print_values(list_node)
-list_node.inspect.to_yaml
   print "#{list_node.value} --> "
   if list_node.next_node.nil?
     print "nil\n"
