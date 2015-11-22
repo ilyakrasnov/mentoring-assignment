@@ -1,4 +1,5 @@
 require './linked_list'
+require './hiring_decision'
 
 # Initialize simple list
 node1 = LinkedListNode.new(37)
@@ -36,3 +37,5 @@ puts "-------"
 puts "Adding a loop and testing detection:"
 node1.next_node = node3
 infinite_linked_list?(node3)
+
+prompt_hiring_decision
